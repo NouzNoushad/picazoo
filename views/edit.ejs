@@ -1,0 +1,33 @@
+<div class="row mt-5 mb-5">
+    <div class="col-md-10 m-auto">
+        <div class="card card-body p-5">
+            <form action="/edit/<%= image.id %> " method="POST">
+                    <div class="row mb-1 justify-content-center">
+                        <div class="col-sm-6 ">
+                            <%- include('./partials/errors.ejs') %>
+                            <img src="/uploads/<%= image.image %> " alt="" heigth=494px width=494px>
+                        </div>
+                    </div>
+                <% if(image.description !== ''){ %>
+                    <div class="row justify-content-center ">
+                        <div class="col-sm-6 ">
+                            <small>edit your image story*</small>
+                            <textarea name="description" id="description" class="form-control" placeholder="Share your image story..." ><%= image.description %></textarea>
+                        </div>
+                    </div>
+                <% }else{ %>
+                    <div class="row mt-2 justify-content-center">
+                        <div class="col-sm-6 ">
+                            <textarea name="description" id="description" class="form-control" placeholder="Share your image story..." ></textarea>
+                        </div>
+                    </div>
+                <% } %>                 
+                <div class="row mb-2 justify-content-center mt-2">
+                    <div class="col-sm-6 ">
+                        <button type="submit" class="btn btn-primary form-control">Edit Story</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

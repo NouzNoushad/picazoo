@@ -1,0 +1,65 @@
+<div class="row mt-5 mb-5">
+    <div class="col-md-10 m-auto">
+        <div class="card card-body p-5">
+            <form action="/show" method="POST" enctype="multipart/form-data">
+                <% if(image.length == 0){ %>
+                    <div class="row mb-0 justify-content-center">
+                        <div class="col-sm-6">
+                            <%- include('./partials/errors.ejs') %>
+                            <small>upload an image*</small>
+                        </div>
+                    </div>
+                <% } else{ %>
+                    <div class="row mb-2 justify-content-center">
+                        <div class="col-sm-6 ">
+                            <%- include('./partials/errors.ejs') %>
+                            <% if(typeof errors != undefined) { %>
+                                <% errors.map(error => { %>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <%= error.message %> 
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <% }); %> 
+                            <% }%> 
+                            <img src="/uploads/<%= image.image %> " alt="" heigth=494px width=494px>
+                        </div>
+                    </div>
+                <% } %> 
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 ">
+                        <input type="file" name="myFile" id="myFile" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-2 justify-content-center">
+                    <div class="col-sm-6 ">
+                        <small>please click here to see your image*</small>
+                        <button type="submit" class="btn btn-outline-primary form-control">View Image</button>
+                    </div>
+                </div>
+            </form>
+            <% if(image.length == 0){ %>
+                <small class="text-center">share your image story</small>
+            <% } else{ %>
+            
+            <form action="/upload/<%= image.id %> " method="POST">
+                <div class="row justify-content-center mb-1">
+                    <div class="col-sm-6 ">
+                        <small>enter your image password* or create new one time password*</small>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+                <div class="row mt-2 justify-content-center mb-2">
+                    <div class="col-sm-6 ">
+                        <textarea name="description" id="description" class="form-control" placeholder="Share your image story..."></textarea>
+                    </div>
+                </div>
+                <div class="row mb-2 justify-content-center">
+                    <div class="col-sm-6 ">
+                        <button type="submit" class="btn btn-primary form-control">Upload</button>
+                    </div>
+                </div>
+            </form>
+            <% } %>
+        </div>
+    </div>
+</div>

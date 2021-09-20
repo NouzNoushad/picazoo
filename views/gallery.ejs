@@ -1,0 +1,39 @@
+<div class="row mt-5">
+    <div class="col-md-14 m-auto" >
+        <%- include('./partials/errors.ejs') %> 
+        <div class="card card-body">  
+            <% if(images.length == 0){ %>
+                <h4><a href="/" class="text-center nav-link" style="color:royalblue;">Add Your Images</a></h4>
+            <% } %>
+                <div class="row row-cols-1 row-cols-md-5 g-2"> 
+                <% images.map((image) => { %>
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="uploads/<%= image.image %> " alt="" >
+                        <div class="card-body"></div>
+                        <h6 class="mb-2 ps-3"><%= image.description %> </h6>
+                        <span class="mb-3">
+                            <a href="/password/<%= image.id %> " class="ps-3"><i class="far fa-edit "></i></a>
+                            <a href="/delete/<%= image.id %> " class="ps-2"><i class="far fa-trash-alt "></i></a>
+                        </span>
+                        <span class="mb-3">
+                            <a href="/like/<%= image.id %> "><i class="far fa-thumbs-up ps-3"></i></a>
+                                <small>
+                                    <%= image.like %>
+                                </small>
+                            <a href="/disLike/<%= image.id %> "><i class="far fa-thumbs-down ps-4 ms-4"></i></a>
+                                <small>
+                                    <%= image.disLike %> 
+                                </small>
+                            <a href="/comment/<%= image.id %> "><i class="far fa-comment-alt ps-4 ms-4"></i></a>
+                                <small>
+                                    <%= image.comment %> 
+                                </small>
+                        </span>
+                        </div>
+                    </div>
+                <% }); %> 
+            </div>
+        </div>
+    </div>
+</div>
